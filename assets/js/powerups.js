@@ -18,6 +18,30 @@ var Powerup = Movable.extend({
 	},
 	
 	apply: function() {
+		switch(this.imgPos) {
+			case powerupType.wave:
+				if(player.secondShotType == wave) 
+					player.secondShotType = doublewave;
+				else if(!player.secondShotType)
+					player.secondShotType=wave;
+				break;
+			case powerupType.life:
+				player.lives++;
+				break;
+			case powerupType.buff:
+				player.maxSpeed += 0.05;
+				player.autoShootSpeed -= 35;
+				break;
+			case powerupType.split:
+				if(player.shotType == linear) {
+					player.shotType = twice;
+				} else if(player.shotType == twice) {
+					player.shotType = thrice;
+				} else if(player.shotType == thrice) {
+					player.shotType = sice;
+				}
+				break;
+		}
 	},
 	
 	collidedWith: function(entity) {

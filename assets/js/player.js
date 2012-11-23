@@ -8,6 +8,7 @@ var Player = Movable.extend({
 		this._super(96,32);
 		this.bindMovementKeys();
 		this.maxSpeed=0.5;
+		this.moveSpeed=0.1;
 		this.autoShoot();		
 	},
 	
@@ -76,6 +77,7 @@ var Player = Movable.extend({
 		if(!this.keyPresses[arrow.left] && !this.keyPresses[arrow.right]) {
 			if(this.xVel > 0) this.xVel -= this.moveSpeed;
 			if(this.xVel < 0) this.xVel += this.moveSpeed;
+			if(this.xVel < this.moveSpeed || this.xVel > -this.moveSpeed) this.xVel=0;
 		}
 		
 		if(this.keyPresses[arrow.down]) {
@@ -91,6 +93,7 @@ var Player = Movable.extend({
 		if(!this.keyPresses[arrow.down] && !this.keyPresses[arrow.up]) {
 			if(this.yVel > 0) this.yVel -= this.moveSpeed;
 			if(this.yVel < 0) this.yVel += this.moveSpeed;
+			if(this.yVel < this.moveSpeed || this.yVel > -this.moveSpeed) this.yVel=0;
 		}
 	},
 	

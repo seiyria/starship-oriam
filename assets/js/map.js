@@ -68,7 +68,6 @@ var Map = {
 				case state.mainmenu:
 					drawClickableRectangle(ctx, (canvas.width/2)-128, (canvas.height/2)-14, 215, 46,  
 					function() {
-						Game.state = state.game;
 						Game.start();
 					});
 					Game.drawText('START', 64, (canvas.width/2)-128, -(canvas.height/2)+32);
@@ -76,8 +75,10 @@ var Map = {
 					break;
 				case state.game:
 		
+					Map.drawPowerups();
+		
 					Map.drawBullets();
-								
+					
 					Map.drawPlayer();
 					
 					Map.drawHUD();
@@ -100,6 +101,13 @@ var Map = {
 			if(map.ticks > 1000) { map.ticks = 0; }
 		
 		}, 1000/map.fps);
+	},
+	
+	drawPowerups: function() {
+		for(var x=0; x<powerups.length; x++) {
+			var powerup = powerups[x];
+			ctx.drawImage(powerup.getImgData(), powerup.getPx(), powerup.getPy());
+		}
 	},
 	
 	drawPlayer: function() {

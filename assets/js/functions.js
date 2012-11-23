@@ -64,3 +64,10 @@ var drawClickableRectangle = function(context, x, y, w, h, f) {
         createClickMap(context.canvas, x, y, w, h, f);
     }
 }
+
+function determineBulletTypeFromShot(shot) {
+	switch(shot) {
+		case linear: case twice: case spinning: case wave: case doublewave: case random: return bulletType.fire;
+		default: return bulletType.ice;
+	}
+}

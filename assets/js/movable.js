@@ -116,11 +116,8 @@ var Movable = Entity.extend({
 		this.movementInterval = setInterval(function() {
 		
 			if(!entity.canMove()) return;
-		
 			entity.dt+=timeInterval;
-			
 			entity.move();
-			
 			entity.modifyMovement();
 			
 		}, timeInterval);

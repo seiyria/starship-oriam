@@ -30,17 +30,24 @@ $(document).ready(function() {
 	var $tilesReady = new $.Deferred();
 	var $bulletsReady = new $.Deferred();
 	var $mobsReady = new $.Deferred();
+	var $powerupsReady = new $.Deferred();
 	
 	promises.push($tilesReady);
 	promises.push($bulletsReady);
 	promises.push($mobsReady);
+	promises.push($powerupsReady);
 	
 	renderers.tile=new TileLoader($tilesReady);
 	renderers.bullet=new BulletLoader($bulletsReady);
 	renderers.mob=new MobLoader($mobsReady);
+	renderers.powerup=new PowerupLoader($powerupsReady);
 	
 	Map.initialize(promises);
 	
-	//spawn the player
-	player = new Player();
+	Game.start();
+	
+	new Powerup(100, 200, powerupType.wave);
+	new Powerup(200, 200, powerupType.life);
+	new Powerup(300, 200, powerupType.buff);
+	new Powerup(400, 200, powerupType.split);
 });

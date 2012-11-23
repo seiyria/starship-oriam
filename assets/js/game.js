@@ -26,7 +26,10 @@ var Game = {
 	},
 	
 	start: function() {
+		Game.state = state.game;
+		player = new Player();
 		Game.beginDrawingText('START', true);
+		
 		setInterval(function() {
 			if(Game.isPaused) return;
 			Game.ticks++;

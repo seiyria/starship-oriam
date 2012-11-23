@@ -16,7 +16,9 @@ var Player = Movable.extend({
 	
 	autoShootSpeed: 250,
 	
-	powerups: new Array(),
+	shotType: linear,
+	
+	secondShotType: null,
 	
 	autoShoot: function() {
 		var player = this;
@@ -31,8 +33,13 @@ var Player = Movable.extend({
 	},
 	
 	shoot: function() {
-		var bullet = new Bullet(this, this.getPx()+33, this.getPy()+(this.width/3), linear, bulletType.fire);
+		var bullet = new Bullet(this, this.getPx()+33, this.getPy()+(this.width/3), this.shotType, determineBulletTypeFromShot(this.shotType));
 		bullet.setVelocityForDirection(dir.right);
+		
+		if(this.secondShotType) {
+			bullet = new Bullet(this, this.getPx()+33, this.getPy()+(this.width/3), this.secondShotType, determineBulletTypeFromShot(this.secondShotType));
+			bullet.setVelocityForDirection(dir.right);
+		}
 	},
 	
 	//bind the movement keys

@@ -86,6 +86,7 @@ var twice = {
 	}
 };
 
+//three bullets
 var thrice = {
 	nextMove: function(entity) {
 		entity.clearMe();
@@ -96,7 +97,8 @@ var thrice = {
 	}
 };
 
-var fice = {
+//seven bullets
+var sice = {
 	nextMove: function(entity) {
 		entity.clearMe();
 		spawnAngularBullet(entity.origin, -67.5);
@@ -114,8 +116,25 @@ var fice = {
 var wave = {
 	nextMove: function(entity) {
 		if(entity.dt%100)
-			return new vec2(entity.xVel, Math.sin(entity.dt * 30) * 30);
+			return new vec2(entity.xVel, Math.sin(entity.dt * (entity.isPositive ? 30 : -30)) * 30);
 		return new vec2(entity.xVel, entity.yVel);
+	}
+};
+
+var doublewave = {
+	nextMove: function(entity) {
+		var bullet = new Bullet(entity.origin, entity.getPx(), entity.getPy()+(entity.height/2), wave, entity.bType);
+		bullet.xVel = entity.xVel;
+		bullet.yVel = entity.yVel;
+		bullet.isPositive = true;
+		
+		bullet = new Bullet(entity.origin, entity.getPx(), entity.getPy()-(entity.height/2), wave, entity.bType);
+		bullet.xVel = entity.xVel;
+		bullet.yVel = entity.yVel;
+		bullet.isPositive = false;
+		
+		entity.clearMe();
+		return new vec2(0, 0);
 	}
 };
 

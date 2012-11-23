@@ -88,15 +88,10 @@ var Player = Movable.extend({
 		var player = this;
 	
 		setInterval(function() {
-		
 			if(!player.canMove()) return;
-			
 			player.checkKeyPresses();
-			
 			player.changeDir();
-			
 			player.move(player.xVel, player.yVel);
-			
 		}, timeInterval);
 	},
 	

@@ -65,6 +65,7 @@ var Map = {
 			Map.drawTiles();
 			
 			switch(Game.state) {
+			
 				case state.mainmenu:
 					drawClickableRectangle(ctx, (canvas.width/2)-128, (canvas.height/2)-14, 215, 46,  
 					function() {
@@ -73,6 +74,7 @@ var Map = {
 					Game.drawText('START', 64, (canvas.width/2)-128, -(canvas.height/2)+32);
 					Game.drawText('STARSHIP ORIAM', 64, (canvas.width/2)-288, -(canvas.height/2)-92);
 					break;
+					
 				case state.game:
 		
 					Map.drawPowerups();
@@ -93,7 +95,16 @@ var Map = {
 						Game.drawText('PAUSED', '64px', (canvas.width/2)-128, -canvas.height/2);
 					}
 					break;
+					
 				case state.gameover:
+					drawClickableRectangle(ctx, (canvas.width/2)-128, (canvas.height/2)-14, 215, 46,  
+					function() {
+						Game.state = state.mainmenu;
+					});
+					Game.drawText('RETRY', 64, (canvas.width/2)-128, -(canvas.height/2)+32);
+					var score = 'SCORE: '+Game.calcScore();
+					Game.drawText(score, 28, (canvas.width/2)-(score.length*4)-64, -(canvas.height/2)-48);
+					Game.drawText('GAME OVER', 64, (canvas.width/2)-224, -(canvas.height/2)-92);
 				break;
 			}
 			

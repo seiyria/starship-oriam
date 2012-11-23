@@ -10,6 +10,7 @@ var promises = new Array();
 /*
 	SPRITE CONSTANTS
 */
+var monsters = new Array();
 var mobs = {ninja: 0, spinner: 1, player: 2, forward: 3, homing: 4, laser: 5};
 
 /*

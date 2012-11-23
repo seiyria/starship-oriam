@@ -14,16 +14,13 @@ var Enemy = Movable.extend({
 	init: function(origin, x, y, flow, _imgPos, shotFunc) {
 		this._super(x,y);
 		bullets.push(this);
+		monsters.push(this);
 		this.origin = origin;
 		this.moveSpeed = 2;
 		if(_imgPos != null)	this.imgPos = _imgPos;
 		if(flow == null) 	this.moveFlow = linear;
 		else this.moveFlow = flow;
 		this.shootFunction = shotFunc;
-	},
-	
-	collidedWith: function(entity) {
-		this.clearMe();
 	},
 	
 	modifyMovement: function() {
@@ -51,6 +48,10 @@ var Enemy = Movable.extend({
 	
 	collidedWith: function(entity) {
 		this._super(entity);
+		this.clearMe();
+		if(!(this instanceof Bullet)) {
+			Game.addKill();
+		}
 	},
 	
 	collideWith: function(entity) {
@@ -65,6 +66,9 @@ var Enemy = Movable.extend({
 	clearMe: function() {
 		var removed = this;
 		bullets = $.grep(bullets, function(val) {
+			return val != removed;
+		});
+		monsters = $.grep(monsters, function(val) {
 			return val != removed;
 		});
 		clearInterval(removed.movementInterval);

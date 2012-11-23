@@ -97,9 +97,9 @@ var twice = {
 var thrice = {
 	nextMove: function(entity) {
 		entity.clearMe();
-		spawnAngularBullet(entity.origin, 0);
-		spawnAngularBullet(entity.origin, 45);
-		spawnAngularBullet(entity.origin, -45);
+		spawnAngularBullet(entity.origin, 0, false, entity.xVel);
+		spawnAngularBullet(entity.origin, 45, false, entity.xVel);
+		spawnAngularBullet(entity.origin, -45, false, entity.xVel);
 		return new vec2(entity.xVel, entity.yVel);
 	}
 };
@@ -108,13 +108,13 @@ var thrice = {
 var sice = {
 	nextMove: function(entity) {
 		entity.clearMe();
-		spawnAngularBullet(entity.origin, -67.5);
-		spawnAngularBullet(entity.origin, -45);
-		spawnAngularBullet(entity.origin, -22.5);
-		spawnAngularBullet(entity.origin, 0);
-		spawnAngularBullet(entity.origin, 22.5);
-		spawnAngularBullet(entity.origin, 45);
-		spawnAngularBullet(entity.origin, 67.5);
+		spawnAngularBullet(entity.origin, -67.5, false, entity.xVel);
+		spawnAngularBullet(entity.origin, -45, false, entity.xVel);
+		spawnAngularBullet(entity.origin, -22.5, false, entity.xVel);
+		spawnAngularBullet(entity.origin, 0, false, entity.xVel);
+		spawnAngularBullet(entity.origin, 22.5, false, entity.xVel);
+		spawnAngularBullet(entity.origin, 45, false, entity.xVel);
+		spawnAngularBullet(entity.origin, 67.5, false, entity.xVel);
 		return new vec2(entity.xVel, entity.yVel);
 	}
 };

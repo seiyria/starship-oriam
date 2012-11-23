@@ -22,12 +22,12 @@ function clamp(num, min, max) {
 	return Math.min(Math.max(num, min), max);
 }
 
-function spawnAngularBullet(entity, angle, unitLoc) {
+function spawnAngularBullet(entity, angle, unitLoc, vel) {
 	//					center					unit circle position									 because bullets are 8x8
 	var xPos = (entity.getPx()+entity.width/2) + (unitLoc ? (Math.cos(entity.angle*(Math.PI/180))*entity.width ) : 0)-4;
 	var yPos = (entity.getPy()+entity.height/2)+ (unitLoc ? (Math.sin(entity.angle*(Math.PI/180))*entity.height) : 0)-4;
 	var bullet = new Bullet(entity, xPos, yPos, linear, bulletType.ice);
-	bullet.setVelocityForAngle(angle, 0.5);
+	bullet.setVelocityForAngle(angle, vel == null ? 0.5 : vel);
 };
 
 var createClickMap = function(canvas, x, y, w, h, f){

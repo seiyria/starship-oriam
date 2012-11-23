@@ -20,24 +20,32 @@ var Powerup = Movable.extend({
 	apply: function() {
 		switch(this.imgPos) {
 			case powerupType.wave:
-				if(player.secondShotType == wave) 
+				if(player.secondShotType == wave) {
+					Game.beginDrawingText("2xWAVE");
 					player.secondShotType = doublewave;
-				else if(!player.secondShotType)
+				} else if(!player.secondShotType) {
+					Game.beginDrawingText("WAVE");
 					player.secondShotType=wave;
+				}
 				break;
 			case powerupType.life:
+				Game.beginDrawingText("LIFE++");
 				player.lives++;
 				break;
 			case powerupType.buff:
+				Game.beginDrawingText("SHIP++");
 				player.maxSpeed += 0.05;
 				player.autoShootSpeed -= 35;
 				break;
 			case powerupType.split:
 				if(player.shotType == linear) {
+					Game.beginDrawingText("2xSHOT");
 					player.shotType = twice;
 				} else if(player.shotType == twice) {
+					Game.beginDrawingText("3xSHOT");
 					player.shotType = thrice;
 				} else if(player.shotType == thrice) {
+					Game.beginDrawingText("7xSHOT");
 					player.shotType = sice;
 				}
 				break;

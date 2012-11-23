@@ -83,3 +83,13 @@ var MobLoader = Loader.extend({
 	},
 
 });
+
+var PowerupLoader = Loader.extend({
+	
+	_imgMap: new Array(),
+	init: function($loader) {
+		this._super($loader);
+		this.loadFrom('assets/img/powerup.png', 'dummy4', 32, 32, 16, 16);
+	},
+
+});

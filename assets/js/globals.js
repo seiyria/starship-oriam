@@ -13,6 +13,11 @@ var promises = new Array();
 var mobs = {ninja: 0, spinner: 1, player: 2, forward: 3, homing: 4, laser: 5};
 
 /*
+	POWERUP CONSTANTS
+*/
+var powerups = {wave: 0, life: 1, buff: 2, split: 3};
+
+/*
 	BULLET CONSTANTS
 */
 var bullets = new Array();

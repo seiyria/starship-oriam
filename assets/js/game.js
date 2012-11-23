@@ -36,8 +36,6 @@ var Game = {
 		
 		setInterval(function() {
 			if(Game.isPaused) return;
-			Game.ticks++;
-			//console.log(Game.ticks++%Game.calcRespawnSpeed(Game.level) + " " + Game.ticks + " " + Game.calcRespawnSpeed(Game.level));
 			if(monsters.length < Game.calcMaxOnScreen(Game.level) && Game.ticks++%Game.calcRespawnSpeed(Game.level) == 0)
 				MonsterSpawner.spawnNewMonster();
 		}, 1);
@@ -90,7 +88,6 @@ var Game = {
 	},
 	
 	addKill: function() {
-		console.log(Game.kills);
 		Game.kills++;
 		Game.checkLevel();
 	},
@@ -100,12 +97,12 @@ var Game = {
 	},
 	
 	calcMaxOnScreen: function(level) {
-		return (level*2)+1
+		return (level*2)+1;
 	},
 	
 	calcRespawnSpeed: function(level) {
-		var max = 200;
-		return clamp(max-(level*10), 0, max);
+		var max = 750;
+		return clamp(max-(level*25), 0, max);
 	},
 	
 	calcScore: function() {
@@ -116,8 +113,6 @@ var Game = {
 var MonsterSpawner = {
 
 	endOfMap: 630,
-	
-	spawnTicks: 1000,
 	
 	spawnNewMonster: function() {
 		if(Game.level > 10) {

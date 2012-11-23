@@ -14,7 +14,8 @@ var Enemy = Movable.extend({
 	init: function(origin, x, y, flow, _imgPos, shotFunc) {
 		this._super(x,y);
 		bullets.push(this);
-		monsters.push(this);
+		if(!(this instanceof Bullet))
+			monsters.push(this);
 		this.origin = origin;
 		this.moveSpeed = 2;
 		if(_imgPos != null)	this.imgPos = _imgPos;

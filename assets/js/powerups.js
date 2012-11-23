@@ -21,6 +21,7 @@ var Powerup = Movable.extend({
 	},
 	
 	collidedWith: function(entity) {
+		this.apply();
 		this.clearMe();
 	},
 	

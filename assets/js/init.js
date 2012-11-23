@@ -50,4 +50,9 @@ $(document).ready(function() {
 	new Powerup(200, 200, powerupType.life);
 	new Powerup(300, 200, powerupType.buff);
 	new Powerup(400, 200, powerupType.split);
+	
+	new Powerup(100, 100, powerupType.wave);
+	new Powerup(200, 100, powerupType.life);
+	new Powerup(300, 100, powerupType.buff);
+	new Powerup(400, 100, powerupType.split);
 });

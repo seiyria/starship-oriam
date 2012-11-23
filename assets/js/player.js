@@ -32,6 +32,10 @@ var Player = Movable.extend({
 		}, 1);
 	},
 	
+	collideWith: function(entity) {
+		this._super(entity);
+	},
+	
 	shoot: function() {
 		var bullet = new Bullet(this, this.getPx()+33, this.getPy()+(this.width/3), this.shotType, determineBulletTypeFromShot(this.shotType));
 		bullet.setVelocityForDirection(dir.right);
@@ -99,7 +103,17 @@ var Player = Movable.extend({
 			player.checkKeyPresses();
 			player.changeDir();
 			player.move(player.xVel, player.yVel);
+			player.modifyMovement();
 		}, timeInterval);
+	},
+	
+	modifyMovement: function() {
+		var me = this;
+		powerups.forEach(function(powerup) {
+			if(me.intersects(powerup)) {
+				me.collideWith(powerup);
+			}
+		});		
 	},
 	
 	getImgData: function() {

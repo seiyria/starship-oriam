@@ -52,12 +52,14 @@ var Enemy = Movable.extend({
 		this.clearMe();
 		if(!(this instanceof Bullet)) {
 			Game.addKill();
+			if(Math.random() > clamp(0.9-(Game.level/50), 0.5, 0.9)) {
+				new Powerup(this.getPx(), this.getPy(), getRandomInt(0,3));
+			}
 		}
 	},
 	
 	collideWith: function(entity) {
 		this._super(entity);
-		this.clearMe();
 	},
 	
 	hitBounds: function() {

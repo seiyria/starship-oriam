@@ -11,6 +11,11 @@ var Powerup = Movable.extend({
 		this._super(x,y);
 		this.imgPos = _imgPos;
 		powerups.push(this);
+		
+		var me = this;
+		setTimeout(function() {
+			me.clearMe();
+		}, 5000);
 	},
 	
 	move: function() {
@@ -35,7 +40,7 @@ var Powerup = Movable.extend({
 			case powerupType.buff:
 				Game.beginDrawingText("SHIP++");
 				player.maxSpeed += 0.05;
-				player.autoShootSpeed -= 35;
+				player.autoShootSpeed = clamp(player.autoShootSpeed-20, 100, 350);
 				break;
 			case powerupType.split:
 				if(player.shotType == linear) {
@@ -47,6 +52,9 @@ var Powerup = Movable.extend({
 				} else if(player.shotType == thrice) {
 					Game.beginDrawingText("7xSHOT");
 					player.shotType = sice;
+				} else if(player.shotType == sice) { 
+					Game.beginDrawingText("CLUSTER");
+					player.shotType = cluster;
 				}
 				break;
 		}

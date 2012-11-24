@@ -106,13 +106,15 @@ var Game = {
 	},
 	
 	calcScore: function() {
-		return Game.level * Game.kills;
+		return (Game.level+1) * Game.kills;
 	}
 };
 
 var MonsterSpawner = {
 
 	endOfMap: 630,
+	
+	spawnChoices: new Array(),
 	
 	spawnNewMonster: function() {
 		if(Game.level > 10) {

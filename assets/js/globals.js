@@ -120,6 +120,29 @@ var sice = {
 	}
 };
 
+//cluster bullets
+var cluster = {
+	nextMove: function(entity) {
+		entity.clearMe();
+		spawnAngularBullet(entity.origin, -67.5, false, entity.xVel);
+		spawnAngularBullet(entity.origin, -45, false, entity.xVel);
+		spawnAngularBullet(entity.origin, -22.5, false, entity.xVel);
+		spawnAngularBullet(entity.origin, 0, false, entity.xVel);
+		spawnAngularBullet(entity.origin, 22.5, false, entity.xVel);
+		spawnAngularBullet(entity.origin, 45, false, entity.xVel);
+		spawnAngularBullet(entity.origin, 67.5, false, entity.xVel);
+		
+		spawnAngularBullet(entity.origin, -67.5-180, false, entity.xVel);
+		spawnAngularBullet(entity.origin, -45-180, false, entity.xVel);
+		spawnAngularBullet(entity.origin, -22.5-180, false, entity.xVel);
+		spawnAngularBullet(entity.origin, 0-180, false, entity.xVel);
+		spawnAngularBullet(entity.origin, 22.5-180, false, entity.xVel);
+		spawnAngularBullet(entity.origin, 45-180, false, entity.xVel);
+		spawnAngularBullet(entity.origin, 67.5-180, false, entity.xVel);
+		return new vec2(entity.xVel, entity.yVel);
+	}
+};
+
 //sinewave
 var wave = {
 	nextMove: function(entity) {

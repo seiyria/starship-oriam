@@ -3,9 +3,11 @@
 var Player = Movable.extend({
 
 	lives: 3,
+	
+	canBeTagged: true,
 
 	init: function() {
-		this._super(96,32);
+		this._super(0,160);
 		this.bindMovementKeys();
 		this.maxSpeed=0.5;
 		this.moveSpeed=0.1;
@@ -31,6 +33,21 @@ var Player = Movable.extend({
 				player.shoot();
 			}
 		}, 1);
+	},
+	
+	collidedWith: function(entity) {
+		if(!player.canBeTagged) return;
+		player.canBeTagged=false;
+		player.lives--;
+		if(player.lives <= 0) {
+			Game.state = state.gameover;
+			return;
+		}
+		Game.beginDrawingText("LIFE--", true);
+		setTimeout(function() {
+			player.canBeTagged = true;
+			Game.beginDrawingText("DO-OVER");
+		}, 1000);
 	},
 	
 	collideWith: function(entity) {

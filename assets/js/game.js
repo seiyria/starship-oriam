@@ -29,6 +29,7 @@ var Game = {
 	},
 	
 	start: function() {
+		if(Game.state == state.game) return;
 		Game.state = state.game;
 		player = new Player();
 		MonsterSpawner.spawnChoices = new Array();
@@ -81,7 +82,7 @@ var Game = {
 	levelUp: function() {
 		Game.beginDrawingText("LEVELUP");
 		Game.level++;
-		if(Game.level == 2)  MonsterSpawner.spawnChoices.push(HomingEnemy);
+		if(Game.level == 1)  MonsterSpawner.spawnChoices.push(HomingEnemy);
 		if(Game.level == 3)  MonsterSpawner.spawnChoices.push(SpinningEnemy);
 		if(Game.level == 5)  MonsterSpawner.spawnChoices.push(NinjaEnemy);
 		if(Game.level == 10) MonsterSpawner.spawnChoices.push(LaserEnemy);
@@ -122,9 +123,9 @@ var MonsterSpawner = {
 	
 	spawnChoices: new Array(),
 	
-	spawnNewMonster: function() {  
+	spawnNewMonster: function() { 
 		var m = MonsterSpawner.spawnChoices[getRandomInt(0, MonsterSpawner.spawnChoices.length-1)];
 		if(!m) return;
-		m.spawn(MonsterSpawner.endOfMap, (Math.random()*300)+20, Game.level/3);
+		m.spawn(MonsterSpawner.endOfMap, (Math.random()*300)+20, (Game.level < 3 ? null : Game.level/3));
 	},
 };

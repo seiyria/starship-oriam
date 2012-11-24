@@ -30,8 +30,10 @@ var Game = {
 	
 	start: function() {
 		Game.state = state.game;
-		MonsterSpawner.spawnNewMonster();
 		player = new Player();
+		MonsterSpawner.spawnChoices = new Array();
+		MonsterSpawner.spawnChoices.push(BasicEnemy);
+		MonsterSpawner.spawnNewMonster();
 		Game.beginDrawingText('START', true);
 		
 		setInterval(function() {
@@ -79,6 +81,10 @@ var Game = {
 	levelUp: function() {
 		Game.beginDrawingText("LEVELUP");
 		Game.level++;
+		if(Game.level == 2)  MonsterSpawner.spawnChoices.push(HomingEnemy);
+		if(Game.level == 3)  MonsterSpawner.spawnChoices.push(SpinningEnemy);
+		if(Game.level == 5)  MonsterSpawner.spawnChoices.push(NinjaEnemy);
+		if(Game.level == 10) MonsterSpawner.spawnChoices.push(LaserEnemy);
 	},
 	
 	checkLevel: function() {
@@ -102,7 +108,7 @@ var Game = {
 	
 	calcRespawnSpeed: function(level) {
 		var max = 750;
-		return clamp(max-(level*25), 0, max);
+		return clamp(max-((level+1)*45), 0, max);
 	},
 	
 	calcScore: function() {
@@ -116,14 +122,9 @@ var MonsterSpawner = {
 	
 	spawnChoices: new Array(),
 	
-	spawnNewMonster: function() {
-		if(Game.level > 10) {
-		} else if(Game.level > 5) {
-		} else if(Game.level > 3) {
-		} else if(Game.level > 2) {
-		} else {
-			BasicEnemy.spawn(MonsterSpawner.endOfMap, (Math.random()*300)+20);
-		}
-			//MineEnemy.spawn(MonsterSpawner.endOfMap, 100);
+	spawnNewMonster: function() {  
+		var m = MonsterSpawner.spawnChoices[getRandomInt(0, MonsterSpawner.spawnChoices.length-1)];
+		if(!m) return;
+		m.spawn(MonsterSpawner.endOfMap, (Math.random()*300)+20, Game.level/3);
 	},
 };

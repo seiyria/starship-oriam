@@ -52,7 +52,7 @@ var Enemy = Movable.extend({
 		this.clearMe();
 		if(!(this instanceof Bullet)) {
 			Game.addKill();
-			if(Math.random() > clamp(0.9-(Game.level/50), 0.5, 0.9)) {
+			if(Math.random() > clamp(0.99-(Game.level/50), 0.8, 0.99)) {
 				new Powerup(this.getPx(), this.getPy(), getRandomInt(0,3));
 			}
 		}
@@ -61,6 +61,8 @@ var Enemy = Movable.extend({
 	collideWith: function(entity) {
 		this._super(entity);
 		if(this instanceof Bullet)
+			this.clearMe();
+		if(entity instanceof Player)
 			this.clearMe();
 	},
 	

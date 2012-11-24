@@ -60,6 +60,8 @@ var Enemy = Movable.extend({
 	
 	collideWith: function(entity) {
 		this._super(entity);
+		if(this instanceof Bullet)
+			this.clearMe();
 	},
 	
 	hitBounds: function() {

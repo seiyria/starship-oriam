@@ -35,7 +35,7 @@ var Game = {
 		Game.beginDrawingText('START', true);
 		
 		setInterval(function() {
-			if(Game.isPaused) return;
+			if(Game.isPaused || Game.state != state.game) return;
 			if(monsters.length < Game.calcMaxOnScreen(Game.level) && Game.ticks++%Game.calcRespawnSpeed(Game.level) == 0)
 				MonsterSpawner.spawnNewMonster();
 		}, 1);

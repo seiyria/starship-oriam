@@ -43,6 +43,4 @@ $(document).ready(function() {
 	renderers.powerup=new PowerupLoader($powerupsReady);
 	
 	Map.initialize(promises);
-	
-	Game.start();
 });
